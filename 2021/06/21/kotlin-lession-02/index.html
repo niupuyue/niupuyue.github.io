@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.paulniu.com">
-  <title>kotlin_lesson | 牛谱乐的技术博客</title>
+  <title>kotlin let,run,with,apply和also的使用 | 牛谱乐的技术博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="最近的一段时间在找工作。其实并没有真正的开始找，因为，毕竟马上就要开始过年了，所以，不管是公司，还是我自己，都把中心放在了过年这个事情上。但是也有一些非常勤劳的工作者，在孜孜不倦的在自己的岗位上付出着，所以，我也陆续收到了一些关于面试的信息。真的感觉面试的内容真的超级多，如果你没有自己的明确定位，很容易就被带跑偏。这也就是我发现很多我之前的本专业的同学有一部分转行了，而且是和我们的计算机没有任何关">
+  <meta name="description" content="总结一下kotlin中let，also，apply，with，run的使用方法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="kotlin_lesson">
-<meta property="og:url" content="http://www.paulniu.com/2018/02/08/kotlin-lesson/index.html">
+<meta property="og:title" content="kotlin let,run,with,apply和also的使用">
+<meta property="og:url" content="http://www.paulniu.com/2021/06/21/kotlin-lession-02/index.html">
 <meta property="og:site_name" content="牛谱乐的技术博客">
-<meta property="og:description" content="最近的一段时间在找工作。其实并没有真正的开始找，因为，毕竟马上就要开始过年了，所以，不管是公司，还是我自己，都把中心放在了过年这个事情上。但是也有一些非常勤劳的工作者，在孜孜不倦的在自己的岗位上付出着，所以，我也陆续收到了一些关于面试的信息。真的感觉面试的内容真的超级多，如果你没有自己的明确定位，很容易就被带跑偏。这也就是我发现很多我之前的本专业的同学有一部分转行了，而且是和我们的计算机没有任何关">
+<meta property="og:description" content="总结一下kotlin中let，also，apply，with，run的使用方法">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2018-02-08T06:57:51.000Z">
-<meta property="article:modified_time" content="2020-11-27T06:11:24.000Z">
+<meta property="article:published_time" content="2021-06-21T08:14:22.000Z">
+<meta property="article:modified_time" content="2021-06-21T09:19:37.122Z">
 <meta property="article:author" content="Paul Niu">
-<meta property="article:tag" content="android">
+<meta property="article:tag" content="kotlin">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="牛谱乐的技术博客" type="application/atom+xml">
@@ -151,48 +151,96 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-kotlin-lesson" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-kotlin-lession-02" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      kotlin_lesson
+      kotlin let,run,with,apply和also的使用
     </h1>
   
 
         
-        <a href="/2018/02/08/kotlin-lesson/" class="archive-article-date">
-  	<time datetime="2018-02-08T06:57:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-08</time>
+        <a href="/2021/06/21/kotlin-lession-02/" class="archive-article-date">
+  	<time datetime="2021-06-21T08:14:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-21</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最近的一段时间在找工作。其实并没有真正的开始找，因为，毕竟马上就要开始过年了，所以，不管是公司，还是我自己，都把中心放在了过年这个事情上。但是也有一些非常勤劳的工作者，在孜孜不倦的在自己的岗位上付出着，所以，我也陆续收到了一些关于面试的信息。真的感觉面试的内容真的超级多，如果你没有自己的明确定位，很容易就被带跑偏。这也就是我发现很多我之前的本专业的同学有一部分转行了，而且是和我们的计算机没有任何关系的行业，原来是这么回事。</p>
+        <p>总结一下kotlin中let，also，apply，with，run的使用方法</p>
 <span id="more"></span>
-<p>但是，我也从这些公司的要求中，找到了一些比较有意思，或者以后可能会成为业界趋势的一个征兆，所以，今天我就要来说一下，就是kotlin语言。说着这里可能大家会说，切，什么啊，这个东西很早就出来了，你现在才说。好吧，确实是很早就出来了，但是我想问一下，你们都公司有要求你们把所有的Android代码都是使用kotlin语言写的吗？我估计没有公司这么做。先不管这些名利的问题，我们就直说这个kotlin语言的特点。<br>网上说这个语言很好学，也有人说很难学的。这么跟大家说一下，如果你之前学过类似Typescript，CoffeeScript这些JS扩展语言的话，那么kotlin将会非常好学。但如果你之前只学过java，并且对java的掌握并没有那么的全面的时候，就会是比较难。难并不在于语法结构，逻辑概念，而在于因为和java有很多相似和不同的地方，很容易让人搞混，所以，我今天就结合着之前看过的一本书《kotlin for android developer》，这本书写的真的很不错。之前一直想在网上找到资源，无奈手残党。然后某CSDN的网站一个coder竟然要价15个积分，我连看都不看，直接拉黑，因为我知道如果一程序员没有开源共享的态度，那么他是不会在这条道路上走太久的。所以，今天我把我在网上找到的分享给大家,并且我自己也要总结一下。<br>连接:<a href="链接:https://pan.baidu.com/s/1qZPMJ1M">连接</a>密码：cr18</p>
+
+<p>作用域函数在kotlin中是非常重要的特点，共分为以下五种：let,run,with,apply和also,这五个函数的工作方式可以说非常相似，但是我们需要了解这五个函数的差异，以便在不同的场景更好的利用它</p>
+<h3 id="Kotlin的作用域函数"><a href="#Kotlin的作用域函数" class="headerlink" title="Kotlin的作用域函数"></a>Kotlin的作用域函数</h3><p>简单来说，作用域函数是为了方便对一个对象进行访问和操作，可以对他们进行空检查或者修改它的属性或者直接返回它的值等操作，具体来说</p>
+<h4 id="let"><a href="#let" class="headerlink" title="let"></a>let</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T, R&gt;</span> T.<span class="title">let</span><span class="params">(block: (<span class="type">T</span>) -&gt; <span class="type">R</span>)</span></span>: R</span><br></pre></td></tr></table></figure>
+
+<p>let函数是参数化类型T的扩展函数，在let块内可以通过it指代该对象，返回值为let块的最后一行或自定return表达式<br>如下所示：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span></span>()&#123;</span><br><span class="line">    <span class="keyword">var</span> name = <span class="string">&quot;《魁拔之书》&quot;</span></span><br><span class="line">    <span class="keyword">var</span> price = <span class="number">60</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">displayInfo</span><span class="params">()</span></span> = print(<span class="string">&quot;书 <span class="variable">$name</span> ,价格是 <span class="variable">$price</span>&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">val <span class="attr">book</span> = Book().<span class="keyword">let</span>&#123;</span><br><span class="line">    it.<span class="attr">name</span> = <span class="string">&quot;魁拔之书&quot;</span></span><br><span class="line">    <span class="string">&quot;这本书是<span class="subst">$&#123;it.name&#125;</span>&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">print(book)</span><br></pre></td></tr></table></figure>
+<p>在控制台中输出的结果是</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这本书是魁拔之书</span><br></pre></td></tr></table></figure>
+<p>这里我们对Book对象使用let作用域函数，在函数块的最后一行添加了一行字符串，并且对Book对象进行了打印，我们看到最后输出的结果是字符串。正常的逻辑，打印一个对象，必定输出的是一个对象，但是在使用let函数之后，输出的是最后一行字符串，这就是let函数的特性导致的。在kotlin中，如果let块中的最后一条语句是非赋值语句，则默认情况下它就是返回语句，相应的如果我们把最后一个语句改为赋值语句，则会变成一个对象</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">val book = Book().let&#123;</span><br><span class="line">    it<span class="selector-class">.name</span> = <span class="string">&quot;魁拔之书&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(book)</span></span></span><br></pre></td></tr></table></figure>
+<p>控制台输出结果为</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kotlin.<span class="keyword">Unit</span></span><br></pre></td></tr></table></figure>
+<p>由此可见，let的函数的特点：</p>
+<p>1.let块中最后一条语句如果是非赋值语句，则默认情况下他是返回语句，否则返回的是一个Unit类型</p>
+<p>2.let可以用于空安全检查<br>如果需要对空对象进行操作，可以对其使用安全调用操作符?.，并调用let在lambda表达式中执行操作，如下所示</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name:<span class="built_in">String</span>? = <span class="literal">null</span></span><br><span class="line">val nameLen = names?.<span class="keyword">let</span>&#123;</span><br><span class="line">    <span class="literal">it</span>.lenght</span><br><span class="line">&#125;?: <span class="string">&quot;name为null&quot;</span></span><br></pre></td></tr></table></figure>
+<p>当那么不为null时，会给nameLen赋值为字符串长度，否则会赋值为字符串</p>
+<p>3.let可以对调用链的结果记性操作<br>例如，我们想获取一个数组中字符串长度大于3的字符串，正常的写法应该是这样的</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">val numbers = arrayListOf(<span class="string">&quot;one&quot;</span>,<span class="string">&quot;two&quot;</span>,<span class="string">&quot;three&quot;</span>,<span class="string">&quot;four&quot;</span>,<span class="string">&quot;five&quot;</span>)</span><br><span class="line">val resultList = numbers.<span class="keyword">map</span> &#123; </span><br><span class="line">    <span class="literal">it</span>.length</span><br><span class="line"> &#125;.filter &#123;</span><br><span class="line">     <span class="literal">it</span> &gt; <span class="number">3</span></span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">print</span>(resultList)</span><br></pre></td></tr></table></figure>
+<p>如果想用let操作符进行简化，可以这样写</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">val numbers = arrayListOf(<span class="string">&quot;one&quot;</span>,<span class="string">&quot;two&quot;</span>,<span class="string">&quot;three&quot;</span>,<span class="string">&quot;four&quot;</span>,<span class="string">&quot;five&quot;</span>)</span><br><span class="line">numbers.<span class="keyword">map</span>&#123;</span><br><span class="line">    <span class="literal">it</span>.length</span><br><span class="line">&#125;.filter &#123;</span><br><span class="line">    <span class="literal">it</span> &gt; <span class="number">3</span></span><br><span class="line">&#125;?.<span class="keyword">let</span>&#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="literal">it</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用let之后，可以直接对数组列表中长度大于3的字符串进行打印，去掉变量赋值</p>
+<p>4.let可以重命名it为一个刻度的lambda参数</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">val <span class="keyword">book </span>= <span class="keyword">Book().let&#123; </span><span class="keyword">book </span>-&gt; </span><br><span class="line">    <span class="keyword">book.name </span>= <span class="string">&quot;《最后的魁拔》&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>let通过使用关键字it来引用对象的上下文，不过也可以重命名为一个可读的lambda参数</p>
+<h4 id="run"><a href="#run" class="headerlink" title="run"></a>run</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T, R&gt;</span> T.<span class="title">run</span><span class="params">(block: <span class="type">T</span>.() -&gt; <span class="type">R</span>)</span></span>: R</span><br></pre></td></tr></table></figure>
+<p>run函数比较简单，以this作为上下文对象，且他的调用方式与let一致</p>
+<p>特点：</p>
+<p>1.当lambda表达式同时包含对象初始化和返回值的计算时，使用run更合适<br>简单来说，在run方法中，我们可以对当前对象同时执行多个操作，如下所示</p>
+<figure class="highlight isbl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">Book</span>().run&#123;</span></span><br><span class="line"><span class="function">    <span class="variable">name</span> = <span class="string">&quot;魁拔之书&quot;</span></span></span><br><span class="line"><span class="function">    <span class="variable">price</span> = <span class="number">35</span></span></span><br><span class="line"><span class="function">    <span class="title">displayInfo</span>()</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>控制台输出结果是</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">书 魁拔之书 ,价格是 35</span><br></pre></td></tr></table></figure>
+<p>我们发现即使我们没有手动执行print方法，但是因为displayInfo方法本身就有打印功能，所以最终还是把信息打印了出来。这里我们可以认为，在run代码块中，每一行代码都会被执行到，就算是一个方法的调用，也会被执行到。<br>如果不适用run函数，则需要这样操作</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">val <span class="keyword">book </span>= <span class="keyword">Book()</span></span><br><span class="line"><span class="keyword"></span><span class="keyword">book.name </span>= <span class="string">&quot;《魁拔之书》&quot;</span></span><br><span class="line"><span class="keyword">book.price </span>= <span class="number">35</span></span><br><span class="line"><span class="keyword">book.displayInfo()</span></span><br></pre></td></tr></table></figure>
+<p>2.除了上面给出的声明方式外，我们还可以写成这样</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">run &#123;</span><br><span class="line">    val <span class="keyword">book </span>= <span class="keyword">Book()</span></span><br><span class="line"><span class="keyword"></span>    <span class="keyword">book.name </span>= <span class="string">&quot;《魁拔之书》&quot;</span></span><br><span class="line">    <span class="keyword">book.price </span>= <span class="number">35</span></span><br><span class="line">    <span class="keyword">book.displayInfo()</span></span><br><span class="line"><span class="keyword"></span>&#125;</span><br></pre></td></tr></table></figure>
+<p>当时这样的声明时，使用的声明方式是如下所示</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;R&gt;</span> <span class="title">run</span><span class="params">(block: () -&gt; <span class="type">R</span>)</span></span>: R</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="with"><a href="#with" class="headerlink" title="with"></a>with</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T,R&gt;</span> <span class="title">with</span> <span class="params">(receiver: <span class="type">T</span>, block:<span class="type">T</span>.() -&gt; <span class="type">R</span>)</span></span>:R</span><br></pre></td></tr></table></figure>
+<p>with函数属于非扩展函数，直接输入一个对象receiver，当输入receiver后，便可以改变receiver的属性，同时也与run做了同样的事情</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">val <span class="attr">book</span> = Book()</span><br><span class="line"><span class="keyword">with</span>(book)&#123;</span><br><span class="line">    <span class="attr">name</span> = <span class="string">&quot;魁拔之书&quot;</span></span><br><span class="line">    <span class="attr">price</span> = <span class="number">35</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里我们使用with时传入了一个参数book，可以直接在with代码块中访问book中的属性和方法。</p>
 <blockquote>
-<p>郑重声明，本篇文章的翻译只作为学习参考之用，不能应用于各种商业用途，在参考学习完成之后，请自觉删除，所有和本文有关的纠纷，与本人无关，特此声明</p>
+<p>with使用的是非null对象，当函数块中不需要返回值时，可以使用with</p>
 </blockquote>
-<h1 id="kotlin"><a href="#kotlin" class="headerlink" title="kotlin"></a>kotlin</h1><h2 id="什么事kotlin"><a href="#什么事kotlin" class="headerlink" title="什么事kotlin"></a>什么事kotlin</h2><p>Kotlin，是由jetBrains开发的基于JVM的语言。Kotlin是使用java语言开发者的思维创建出来的，那么我们的Android使用Kotlin有什么样的优点：</p>
-<ol>
-<li>对于java开发者而言，Kotlin语言是非常直觉话的，并且容易学习</li>
-<li>它与我们日常使用的IDE完全吻合，as可以非常完美的编译，运行Kotlin语言</li>
-</ol>
-<p>那么其实这些都是我们自己总结的，那么其实官方也有为我们总结关于Kotlin的具体特点</p>
-<ol>
-<li>易表现：通过Kotlin可以很容易的避免模板代码因为因为大部分的典型情况都在语言中默认覆盖了，如下的例子：<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Article</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> long id;</span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">String</span> name;</span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">String</span> url;</span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">String</span> mbid;</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">public</span> long <span class="function"><span class="title">getId</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.id;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">void</span> <span class="function"><span class="title">setId</span>(<span class="params">long id</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">String</span> <span class="function"><span class="title">getName</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">void</span> <span class="function"><span class="title">setName</span>(<span class="params"><span class="built_in">String</span> name</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">String</span> <span class="function"><span class="title">getUrl</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.url;</span><br><span class="line">    &#125;</span><br><span class="line">    publiv <span class="built_in">void</span> <span class="function"><span class="title">setUrl</span>(<span class="params"><span class="built_in">String</span> url</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.url = url;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">String</span> <span class="function"><span class="title">getMbid</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.mbid;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">void</span> <span class="function"><span class="title">setMbid</span>(<span class="params"><span class="built_in">String</span> mbid</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.mbid = mbid;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-但是如果我们通过Kotlin语言来实现，代码就会减少很多<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">data <span class="keyword">class</span> <span class="symbol">Article</span>(</span><br><span class="line">    <span class="symbol">var</span> <span class="symbol">id:<span class="symbol">Long</span>,</span></span><br><span class="line"><span class="symbol">    <span class="symbol">var</span></span> <span class="symbol">name:<span class="symbol">String</span>,</span></span><br><span class="line"><span class="symbol">    <span class="symbol">var</span></span> <span class="symbol">url:<span class="symbol">String</span>,</span></span><br><span class="line"><span class="symbol">    <span class="symbol">var</span></span> <span class="symbol">mbid:<span class="symbol">String</span></span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-这个类它就会自动生成所有的属性和他们的访问器，以及一些有用的方法，比如toString()方法</li>
-<li>空安全：java语言我们可以称之为防御性语言，如果我们不想遇到空指针异常，那么我们需要在使用它之前不停地判断他是否为空，如果为空则不能执行操作。Kotlin语言和其他的现代语言是相类似的，都是空安全的，因为我们需要通过一个安全调用操作符(用?标识)明确的来指定一个对象是否为空<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这里是不能通过编译的，因为我们这规定了，notNullArticle不能为空</span></span><br><span class="line"><span class="built_in">var</span> notNullArticle:Article = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//可以编译，因为我们这里变量可以为空</span></span><br><span class="line"><span class="built_in">var</span> artist:Article? = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//无法编译，因为artist可能为空，那么如果是空，则不能调用方法</span></span><br><span class="line">artist.<span class="keyword">print</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">//可以编译，这里只有当artist不为空的时候才可以执行响应的函数</span></span><br><span class="line">artist?.<span class="keyword">print</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">//如果我们在使用之前就调用判断是否为空，那么我们这里可以直接使用</span></span><br><span class="line"><span class="keyword">if</span>(artist != <span class="literal">null</span>)&#123;</span><br><span class="line">    artist.<span class="keyword">print</span>()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//只有确保artis不为空的情况下才能调用print，否则不给调用</span></span><br><span class="line">artist!!.<span class="keyword">print</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">//我们有时候可以使用Elvis来判断当前是否为空，然后如果为空需要赋予额一个值，我们也可以成为是三元运算符</span></span><br><span class="line"><span class="built_in">var</span> name = artist?.name ? : <span class="string">&quot;empty&quot;</span></span><br></pre></td></tr></table></figure></li>
-<li>拓展方法：我们可以给任何类添加方法，他比我们那些在项目中使用额工具类拥有更加良好的可读性，下面是书里面给举得例子<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> Fragment.<span class="title">Toast</span><span class="params">(message:<span class="type">CharSequeue</span>,duration:<span class="type">Int</span> = Toast.SHORT)</span></span>&#123;</span><br><span class="line">    Toast.makeText(getActivity(),message,duration).show()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-那么我们紧接着就可以调用这个方法<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fragment.toast(<span class="string">&quot;你好&quot;</span>)<span class="comment">;</span></span><br></pre></td></tr></table></figure></li>
-<li>函数式支持：有时候我们做开发的时候总会遇到这样的情况：当我们添加点击事件的时候，总是不得不使用一个匿名函数作为接口回调，实现点击之后的操作。其实最终我们可以这样实现<figure class="highlight isbl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">view.setOnclickListener</span>(</span><br><span class="line">    <span class="function"><span class="title">toast</span>(<span class="string">&quot;hello world&quot;</span>)</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<h2 id="android-studio"><a href="#android-studio" class="headerlink" title="android studio"></a>android studio</h2>android studio是被google公司承认的Android开发官方软件。Android studio3.0以前的版本不支持Kotlin，那么我们需要使用一些插件，来完成，如果使用额是Android studio3.0以后的版本，那么我们就可以直接使用了。<br>那么我们就按照书籍上的例子先去创建一个Android项目，并且为了能够正常</li>
-</ol>
+<h4 id="apply"><a href="#apply" class="headerlink" title="apply"></a>apply</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> T.<span class="title">apply</span><span class="params">(block: <span class="type">T</span>() -&gt; <span class="type">Unit</span>)</span></span>: T</span><br></pre></td></tr></table></figure>
+<p>apply是T的扩展函数，这点和run有点类似，它将对象的上下文引用为this而不是it，并且提供了空安全检查，不同的是，apply不接受函数块中的返回值，返回值是自己的T类型对象</p>
+<figure class="highlight isbl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">val</span> <span class="variable">book</span> = <span class="function"><span class="title">Book</span>().apply&#123;</span></span><br><span class="line"><span class="function">    <span class="variable">name</span> = <span class="string">&quot;《魁拔之书》&quot;</span></span></span><br><span class="line"><span class="function">    <span class="variable">price</span> = <span class="number">33</span></span></span><br><span class="line"><span class="function">&#125;</span></span><br><span class="line"><span class="function"><span class="title">print</span>(<span class="variable">book</span>)</span></span><br></pre></td></tr></table></figure>
+<p>此处打印的结果 book是一个第一项，返回内存地址。其实我们不难发现，let，with,run函数返回值都是R，而apply和also返回值是T。比如在let中，没有在函数块中返回具体的值，最终会成为Unit类型。而apply中，最后返回对象本身T时，他就是Book类型</p>
+<h4 id="also"><a href="#also" class="headerlink" title="also"></a>also</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> T.<span class="title">alse</span><span class="params">(block: (<span class="type">T</span>) -&gt; <span class="type">Unit</span>)</span></span>: T</span><br></pre></td></tr></table></figure>
+<p>alse是T的扩展函数，返回值与apply一致，直接返回T。alse函数的用法类似于let函数，将对象的上下文引用为it，并提供空安全检查</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">val book = Book().also&#123;</span><br><span class="line">    it<span class="selector-class">.name</span> = <span class="string">&quot;《魁拔之书》&quot;</span></span><br><span class="line">    it<span class="selector-class">.price</span> = <span class="number">32</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(book)</span></span></span><br></pre></td></tr></table></figure>
+<p>控制台最终输出的结果是book的内存地址</p>
+<h3 id="let-run-with-apply-alse的使用场景"><a href="#let-run-with-apply-alse的使用场景" class="headerlink" title="let,run,with,apply,alse的使用场景"></a>let,run,with,apply,alse的使用场景</h3><p>简单罗列了几个常见的使用场景</p>
+<ul>
+<li>初始化对象/更改对象属性，可使用apply</li>
+<li>如果将数据指派给接收对象的属性之前需要验证对象，使用also</li>
+<li>如果将对象进行空检查并访问或修改其属性，使用let</li>
+<li>如果是非null的对象并且函数块中不需要返回值，可以使用with</li>
+<li>如果想计算某个值，或者限制多个本地变量的范围，使用run</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 显示弹窗时，保证context上下文对象不能为null(空检查)</span></span><br><span class="line">context?.let &#123;</span><br><span class="line">    <span class="keyword">val</span> teacherInfoDialog = AICourseTeacherInfoDialog(it, t.<span class="keyword">data</span>)</span><br><span class="line">    teacherInfoDialog.show()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 修改对象的属性</span></span><br><span class="line">UserManager.user?.apply &#123;</span><br><span class="line">    <span class="keyword">this</span>.grade = grade</span><br><span class="line">    <span class="keyword">this</span>.edition = edition</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 计算某个值</span></span><br><span class="line"><span class="keyword">val</span> user = User(<span class="string">&quot;Kotlin&quot;</span>, <span class="number">1</span>, <span class="string">&quot;1111111&quot;</span>)</span><br><span class="line"><span class="keyword">val</span> result = user.run &#123;</span><br><span class="line">    println(<span class="string">&quot;my name is <span class="variable">$name</span>, I am <span class="variable">$age</span> years old, my phone number is <span class="variable">$phoneNum</span>&quot;</span>)</span><br><span class="line">    <span class="number">1000</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6975384870675546126?share_token=d2308375-e0e4-43b8-8679-8b7a8e1155c0">(kotlin篇)差异化分析，let，run，with，apply及also</a></p>
 
       
 
@@ -206,7 +254,7 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">android</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">kotlin</a>
         		</li>
       		
 		</ul>
@@ -262,7 +310,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://www.paulniu.com/2018/02/08/kotlin-lesson/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://www.paulniu.com/2021/06/21/kotlin-lession-02/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -276,18 +324,9 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2018/02/10/android-19-buildprocess/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          重拾android路(十八) Android构建流程
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/02/03/android-18-framework/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">重拾android路(十七) Android部分框架介绍</div>
+    <a href="/2020/03/29/android-interview-2020/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">android-interview-2020</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -473,15 +512,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">键盘</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">record</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">video</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">键盘</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -493,15 +532,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Kotlin</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">thread</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">OkHttp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Kotlin</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -517,11 +556,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">WebView</a>
+                <a href="javascript:void(0)" class="js-tag color5">AIDL</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">AIDL</a>
+                <a href="javascript:void(0)" class="js-tag color3">WebView</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -537,7 +576,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">sqlite</a>
+                <a href="javascript:void(0)" class="js-tag color2">rxjava</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -549,11 +588,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">源码分析</a>
+                <a href="javascript:void(0)" class="js-tag color2">sqlite</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">rxjava</a>
+                <a href="javascript:void(0)" class="js-tag color5">源码分析</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -582,6 +621,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">swift</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">kotlin</a>
               </li>
              
               <li class="article-tag-list-item">
