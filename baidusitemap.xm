@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://www.paulniu.com/2018/04/12/android-23-eventbus/</loc>
+    <lastmod>2021-06-22</lastmod>
+  </url>
+  <url>
+    <loc>http://www.paulniu.com/2020/03/11/android-source-code-10/</loc>
+    <lastmod>2021-06-22</lastmod>
+  </url>
+  <url>
     <loc>http://www.paulniu.com/2021/06/22/android-39-camera/</loc>
     <lastmod>2021-06-22</lastmod>
   </url>
@@ -50,10 +58,6 @@
   </url>
   <url>
     <loc>http://www.paulniu.com/2019/05/08/android-25-keyboard/</loc>
-    <lastmod>2021-06-21</lastmod>
-  </url>
-  <url>
-    <loc>http://www.paulniu.com/2018/04/12/android-23-eventbus/</loc>
     <lastmod>2021-06-21</lastmod>
   </url>
   <url>
@@ -326,10 +330,6 @@
   </url>
   <url>
     <loc>http://www.paulniu.com/2020/03/09/android-source-code-08/</loc>
-    <lastmod>2020-11-27</lastmod>
-  </url>
-  <url>
-    <loc>http://www.paulniu.com/2020/03/11/android-source-code-10/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
