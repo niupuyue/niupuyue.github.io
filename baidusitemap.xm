@@ -121,14 +121,6 @@
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2015/12/07/Android-1-service/</loc>
-    <lastmod>2020-11-27</lastmod>
-  </url>
-  <url>
-    <loc>http://www.paulniu.com/2016/01/09/Android-2-adaptation/</loc>
-    <lastmod>2020-11-27</lastmod>
-  </url>
-  <url>
     <loc>http://www.paulniu.com/2019/09/29/JavaEE-01-LearnRoute/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
@@ -137,11 +129,15 @@
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2019/10/16/JavaEE-04-JSP/</loc>
+    <loc>http://www.paulniu.com/2016/01/09/Android-2-adaptation/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2019/09/29/JavaEE-02-JavaSE/</loc>
+    <loc>http://www.paulniu.com/2015/12/07/Android-1-service/</loc>
+    <lastmod>2020-11-27</lastmod>
+  </url>
+  <url>
+    <loc>http://www.paulniu.com/2019/10/16/JavaEE-04-JSP/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
@@ -150,10 +146,6 @@
   </url>
   <url>
     <loc>http://www.paulniu.com/2019/10/29/JavaEE-06-Maven/</loc>
-    <lastmod>2020-11-27</lastmod>
-  </url>
-  <url>
-    <loc>http://www.paulniu.com/2019/10/01/JavaEE-03-Servlet/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
@@ -185,11 +177,11 @@
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2016/08/28/android-14-start-mode/</loc>
+    <loc>http://www.paulniu.com/2016/09/15/android-15-broadcastReceiver/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2016/09/15/android-15-broadcastReceiver/</loc>
+    <loc>http://www.paulniu.com/2019/10/01/JavaEE-03-Servlet/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
@@ -197,7 +189,7 @@
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2018/02/10/android-19-buildprocess/</loc>
+    <loc>http://www.paulniu.com/2016/08/28/android-14-start-mode/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
@@ -205,15 +197,23 @@
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2018/02/27/android-21-gradle/</loc>
-    <lastmod>2020-11-27</lastmod>
-  </url>
-  <url>
     <loc>http://www.paulniu.com/2018/02/15/android-20-git/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
+    <loc>http://www.paulniu.com/2019/09/29/JavaEE-02-JavaSE/</loc>
+    <lastmod>2020-11-27</lastmod>
+  </url>
+  <url>
+    <loc>http://www.paulniu.com/2018/02/27/android-21-gradle/</loc>
+    <lastmod>2020-11-27</lastmod>
+  </url>
+  <url>
     <loc>http://www.paulniu.com/2018/04/08/android-22-proguard/</loc>
+    <lastmod>2020-11-27</lastmod>
+  </url>
+  <url>
+    <loc>http://www.paulniu.com/2018/02/10/android-19-buildprocess/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
@@ -241,11 +241,19 @@
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
+    <loc>http://www.paulniu.com/2020/02/24/android-36-aidl/</loc>
+    <lastmod>2020-11-27</lastmod>
+  </url>
+  <url>
     <loc>http://www.paulniu.com/2020/02/28/android-37-webview/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
     <loc>http://www.paulniu.com/2020/03/02/android-38-jni/</loc>
+    <lastmod>2020-11-27</lastmod>
+  </url>
+  <url>
+    <loc>http://www.paulniu.com/2017/12/24/android-interview-2017/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
@@ -257,11 +265,11 @@
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2017/12/24/android-interview-2017/</loc>
+    <loc>http://www.paulniu.com/2020/03/29/android-interview-2020/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2020/03/29/android-interview-2020/</loc>
+    <loc>http://www.paulniu.com/2019/06/15/android-interview-2019/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
@@ -273,11 +281,7 @@
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2020/02/24/android-36-aidl/</loc>
-    <lastmod>2020-11-27</lastmod>
-  </url>
-  <url>
-    <loc>http://www.paulniu.com/2019/06/15/android-interview-2019/</loc>
+    <loc>http://www.paulniu.com/2019/08/06/android-media-04/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
@@ -289,7 +293,7 @@
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2019/08/06/android-media-04/</loc>
+    <loc>http://www.paulniu.com/2019/08/26/android-media-06/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
@@ -297,19 +301,15 @@
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2019/08/26/android-media-06/</loc>
-    <lastmod>2020-11-27</lastmod>
-  </url>
-  <url>
     <loc>http://www.paulniu.com/2019/08/31/android-media-08/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2018/04/16/android-points/</loc>
+    <loc>http://www.paulniu.com/2019/09/01/android-media-09/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2019/09/01/android-media-09/</loc>
+    <loc>http://www.paulniu.com/2018/04/16/android-points/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
@@ -321,11 +321,11 @@
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2020/03/05/android-source-code-04/</loc>
+    <loc>http://www.paulniu.com/2020/03/06/android-source-code-05/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2020/03/06/android-source-code-05/</loc>
+    <loc>http://www.paulniu.com/2020/03/07/android-source-code-06/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
@@ -337,11 +337,11 @@
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2020/03/10/android-source-code-09/</loc>
+    <loc>http://www.paulniu.com/2020/03/12/android-source-code-11/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2020/03/12/android-source-code-11/</loc>
+    <loc>http://www.paulniu.com/2020/03/05/android-source-code-04/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
@@ -361,7 +361,15 @@
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
+    <loc>http://www.paulniu.com/2019/07/03/android-tools-06/</loc>
+    <lastmod>2020-11-27</lastmod>
+  </url>
+  <url>
     <loc>http://www.paulniu.com/2019/07/01/android-tools-04/</loc>
+    <lastmod>2020-11-27</lastmod>
+  </url>
+  <url>
+    <loc>http://www.paulniu.com/2019/07/04/android-tools-07/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
@@ -369,15 +377,7 @@
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2019/07/03/android-tools-06/</loc>
-    <lastmod>2020-11-27</lastmod>
-  </url>
-  <url>
     <loc>http://www.paulniu.com/2019/07/07/android-tools-08/</loc>
-    <lastmod>2020-11-27</lastmod>
-  </url>
-  <url>
-    <loc>http://www.paulniu.com/2019/07/04/android-tools-07/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
@@ -397,6 +397,10 @@
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
+    <loc>http://www.paulniu.com/2019/09/03/android-tools-15/</loc>
+    <lastmod>2020-11-27</lastmod>
+  </url>
+  <url>
     <loc>http://www.paulniu.com/2019/08/20/android-tools-14/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
@@ -405,19 +409,11 @@
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2019/09/03/android-tools-15/</loc>
-    <lastmod>2020-11-27</lastmod>
-  </url>
-  <url>
-    <loc>http://www.paulniu.com/2019/09/19/android-tools-18/</loc>
-    <lastmod>2020-11-27</lastmod>
-  </url>
-  <url>
     <loc>http://www.paulniu.com/2019/09/17/android-tools-17/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2019/09/29/android-tools-19/</loc>
+    <loc>http://www.paulniu.com/2019/09/19/android-tools-18/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
@@ -429,11 +425,11 @@
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2019/11/20/android-tools-23/</loc>
+    <loc>http://www.paulniu.com/2019/09/29/android-tools-19/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2019/07/02/flutter-01/</loc>
+    <loc>http://www.paulniu.com/2019/11/20/android-tools-23/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
@@ -441,11 +437,11 @@
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2018/05/16/ios-file-operation/</loc>
+    <loc>http://www.paulniu.com/2019/07/02/flutter-01/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2018/05/14/ios-framework4swift/</loc>
+    <loc>http://www.paulniu.com/2018/05/16/ios-file-operation/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
@@ -453,11 +449,11 @@
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2020/03/07/android-source-code-06/</loc>
+    <loc>http://www.paulniu.com/2018/01/28/nodejs/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2018/01/28/nodejs/</loc>
+    <loc>http://www.paulniu.com/2018/05/14/ios-framework4swift/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
@@ -465,15 +461,11 @@
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2019/07/30/python-03/</loc>
-    <lastmod>2020-11-27</lastmod>
-  </url>
-  <url>
     <loc>http://www.paulniu.com/2019/07/25/python-02/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2019/07/31/python-05/</loc>
+    <loc>http://www.paulniu.com/2019/07/30/python-03/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
@@ -481,7 +473,7 @@
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2019/08/03/python-07/</loc>
+    <loc>http://www.paulniu.com/2019/07/31/python-05/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
@@ -489,11 +481,15 @@
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2019/08/04/python-08/</loc>
+    <loc>http://www.paulniu.com/2020/03/10/android-source-code-09/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2019/08/05/python-09/</loc>
+    <loc>http://www.paulniu.com/2019/08/03/python-07/</loc>
+    <lastmod>2020-11-27</lastmod>
+  </url>
+  <url>
+    <loc>http://www.paulniu.com/2019/08/04/python-08/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
@@ -501,11 +497,15 @@
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2019/08/08/python-12/</loc>
+    <loc>http://www.paulniu.com/2019/08/07/python-11/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2019/08/07/python-11/</loc>
+    <loc>http://www.paulniu.com/2019/08/05/python-09/</loc>
+    <lastmod>2020-11-27</lastmod>
+  </url>
+  <url>
+    <loc>http://www.paulniu.com/2019/08/08/python-12/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
