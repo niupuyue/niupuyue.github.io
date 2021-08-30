@@ -16,7 +16,7 @@
 <meta property="og:description" content="概述">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-07-25T03:49:11.000Z">
-<meta property="article:modified_time" content="2021-06-21T09:35:10.670Z">
+<meta property="article:modified_time" content="2021-08-30T08:55:55.300Z">
 <meta property="article:author" content="Paul Niu">
 <meta property="article:tag" content="android">
 <meta property="article:tag" content="kotlin">
@@ -358,6 +358,14 @@ var _hmt = _hmt || [];
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">for</span><span class="params">((index,value)</span></span> <span class="keyword">in</span> array<span class="selector-class">.withInde</span>())&#123;</span><br><span class="line">  println(<span class="string">&quot;the element at $index is $value&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>一个例子</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args:<span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span>&#123;</span><br><span class="line">  <span class="keyword">val</span> items = listOf(<span class="string">&quot;hello&quot;</span>,<span class="string">&quot;world&quot;</span>,<span class="string">&quot;my name&quot;</span>,<span class="string">&quot;paulniu&quot;</span>)</span><br><span class="line">  <span class="keyword">for</span>(item <span class="keyword">in</span> items)&#123;</span><br><span class="line">    println(item)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span>(index <span class="keyword">in</span> items.indices)&#123;</span><br><span class="line">    println(<span class="string">&quot;item at <span class="variable">$index</span> is <span class="subst">$&#123;items[index]&#125;</span>&quot;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>除了上面的方式之外，我们还可以通过增强for循环遍历数组或者集合</p>
+<figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">val <span class="built_in">items</span> = listOf(<span class="string">&quot;hello&quot;</span>,<span class="string">&quot;world&quot;</span>,<span class="string">&quot;my name&quot;</span>,<span class="string">&quot;paulniu&quot;</span>)</span><br><span class="line"><span class="built_in">items</span>.<span class="keyword">forEach</span>&#123; item -&gt; </span><br><span class="line">  println(item)  </span><br><span class="line">&#125;</span><br><span class="line">打印结果就是</span><br><span class="line"><span class="string">&quot;hello&quot;</span>,<span class="string">&quot;world&quot;</span>,<span class="string">&quot;my name&quot;</span>,<span class="string">&quot;paulniu&quot;</span></span><br></pre></td></tr></table></figure>
+<p>如果我们想获取每个item的下标，可以通过带index的for循环，来实现</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">val <span class="built_in">items</span> = listOf(<span class="string">&quot;hello&quot;</span>,<span class="string">&quot;world&quot;</span>,<span class="string">&quot;my name&quot;</span>,<span class="string">&quot;paulniu&quot;</span>)</span><br><span class="line"><span class="built_in">items</span>.forEachIndex&#123; <span class="built_in">index</span>,item -&gt;</span><br><span class="line">  println(<span class="string">&quot;index=&quot;</span>+<span class="built_in">index</span>+<span class="string">&quot;;item=&quot;</span> +item)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>当我们想要输出字符串时，可以通过**${}**的方式实现，例如上面的例子，我们可以这样写</p>
+</blockquote>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">val items = listOf(<span class="string">&quot;hello&quot;</span>,<span class="string">&quot;world&quot;</span>,<span class="string">&quot;my name&quot;</span>,<span class="string">&quot;paulniu&quot;</span>)</span><br><span class="line">items.forEachIndex&#123; <span class="keyword">index</span>,item -&gt; </span><br><span class="line">  println(<span class="string">&quot;index=<span class="subst">$&#123;<span class="keyword">index</span>&#125;</span>;item=<span class="subst">$&#123;item&#125;</span>&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="while和do…while循环"><a href="#while和do…while循环" class="headerlink" title="while和do…while循环"></a>while和do…while循环</h2><p>while循环是最基本的循环<br>do…while循环对于while循环来说，如果不满足条件则不能进入循环。但有时候我们需要即使不满足条件，也至少执行一次<br>do…while循环和while循环相似，不同的是，do…while循环至少会执行一次<br>一个例子</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args:<span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span>&#123;</span><br><span class="line">  <span class="keyword">var</span> x= <span class="number">5</span></span><br><span class="line">  <span class="keyword">while</span>(x &gt;<span class="number">0</span>)&#123;</span><br><span class="line">    print(x--)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">var</span> y = <span class="number">5</span></span><br><span class="line">  <span class="keyword">do</span>&#123;</span><br><span class="line">    println(y--)</span><br><span class="line">  &#125;<span class="keyword">while</span>(y &gt; <span class="number">0</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -435,11 +443,61 @@ var _hmt = _hmt || [];
 <ol>
 <li>classModifier:类属性修饰符，标示类本身特性</li>
 </ol>
-<p>| 修饰符 | 含义<br>|!—–! |!—–! |<br>|abstract | 抽象类 |<br>|final | 类不可继承，默认属性 |<br>|enum |枚举类 |<br>|open | 类可继承，类默认是final的 |<br>|annotation | 注解类 |</p>
+<table>
+<thead>
+<tr>
+<th align="left">修饰符</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">abstract</td>
+<td align="left">抽象类</td>
+</tr>
+<tr>
+<td align="left">final</td>
+<td align="left">类不可继承，默认属性</td>
+</tr>
+<tr>
+<td align="left">enum</td>
+<td align="left">枚举类</td>
+</tr>
+<tr>
+<td align="left">open</td>
+<td align="left">类可继承，类默认是final的</td>
+</tr>
+<tr>
+<td align="left">annotation</td>
+<td align="left">注解类</td>
+</tr>
+</tbody></table>
 <ol start="2">
 <li>accessModifier：访问权限修饰符</li>
 </ol>
-<p>| 修饰符 | 含义 |<br>|!—-! | !—–! |<br>|private | 仅在同一个文件中可见 |<br>|protected | 同一个文件中或子类可见 |<br>| public | 所有调用的地方都可见 |<br>|internal | 同一个模块中可见 |</p>
+<table>
+<thead>
+<tr>
+<th align="left">修饰符</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">private</td>
+<td align="left">仅在同一个文件中可见</td>
+</tr>
+<tr>
+<td align="left">protected</td>
+<td align="left">同一个文件中或子类可见</td>
+</tr>
+<tr>
+<td align="left">public</td>
+<td align="left">所有调用的地方都可见</td>
+</tr>
+<tr>
+<td align="left">internal</td>
+<td align="left">同一个模块中可见</td>
+</tr>
+</tbody></table>
 <p>一个例子：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件名：example.kt</span></span><br><span class="line"><span class="keyword">package</span> foo</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> &#123;&#125; <span class="comment">// 在 example.kt 内可见</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">var</span> bar: <span class="built_in">Int</span> = <span class="number">5</span> <span class="comment">// 该属性随处可见</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">internal</span> <span class="keyword">val</span> baz = <span class="number">6</span>    <span class="comment">// 相同模块内可见</span></span><br></pre></td></tr></table></figure>
 
