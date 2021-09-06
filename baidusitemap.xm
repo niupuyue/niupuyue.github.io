@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://www.paulniu.com/2021/09/06/android-source-code-13/</loc>
+    <lastmod>2021-09-06</lastmod>
+  </url>
+  <url>
+    <loc>http://www.paulniu.com/2021/08/22/android-41-surface/</loc>
+    <lastmod>2021-09-06</lastmod>
+  </url>
+  <url>
     <loc>http://www.paulniu.com/2021/06/22/android-39-camera/</loc>
     <lastmod>2021-08-31</lastmod>
   </url>
