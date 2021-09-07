@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://www.paulniu.com/2021/09/06/android-source-code-13/</loc>
+    <loc>http://www.paulniu.com/2020/09/22/android-42-coroutine/</loc>
     <lastmod>2021-09-07</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2021/08/22/android-41-surface/</loc>
-    <lastmod>2021-09-06</lastmod>
+    <loc>http://www.paulniu.com/2020/06/22/android-39-camera/</loc>
+    <lastmod>2021-09-07</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2021/06/22/android-39-camera/</loc>
-    <lastmod>2021-08-31</lastmod>
+    <loc>http://www.paulniu.com/2020/06/23/android-40-datastore/</loc>
+    <lastmod>2021-09-07</lastmod>
+  </url>
+  <url>
+    <loc>http://www.paulniu.com/2020/08/22/android-41-surface/</loc>
+    <lastmod>2021-09-07</lastmod>
+  </url>
+  <url>
+    <loc>http://www.paulniu.com/2021/09/07/android-interview-2020/</loc>
+    <lastmod>2021-09-07</lastmod>
+  </url>
+  <url>
+    <loc>http://www.paulniu.com/2021/09/06/android-source-code-13/</loc>
+    <lastmod>2021-09-07</lastmod>
   </url>
   <url>
     <loc>http://www.paulniu.com/2019/07/25/android-31-kotlin/</loc>
@@ -19,10 +31,6 @@
   <url>
     <loc>http://www.paulniu.com/2019/08/13/android-tools-13/</loc>
     <lastmod>2021-08-20</lastmod>
-  </url>
-  <url>
-    <loc>http://www.paulniu.com/2021/06/23/android-40-datastore/</loc>
-    <lastmod>2021-07-05</lastmod>
   </url>
   <url>
     <loc>http://www.paulniu.com/2018/04/12/android-23-eventbus/</loc>
@@ -274,10 +282,6 @@
   </url>
   <url>
     <loc>http://www.paulniu.com/2019/08/02/android-media-01/</loc>
-    <lastmod>2020-11-27</lastmod>
-  </url>
-  <url>
-    <loc>http://www.paulniu.com/2020/03/29/android-interview-2020/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
