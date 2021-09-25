@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://www.paulniu.com/2021/09/10/algorithm-01/</loc>
+    <lastmod>2021-09-25</lastmod>
+  </url>
+  <url>
+    <loc>http://www.paulniu.com/2015/12/07/android-1-service/</loc>
+    <lastmod>2021-09-25</lastmod>
+  </url>
+  <url>
+    <loc>http://www.paulniu.com/2016/01/09/ndroid-2-adaptation/</loc>
+    <lastmod>2021-09-25</lastmod>
+  </url>
+  <url>
+    <loc>http://www.paulniu.com/2016/02/19/android-3-network/</loc>
+    <lastmod>2021-09-25</lastmod>
+  </url>
+  <url>
     <loc>http://www.paulniu.com/2020/09/22/android-42-coroutine/</loc>
     <lastmod>2021-09-07</lastmod>
   </url>
@@ -137,15 +153,7 @@
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
-    <loc>http://www.paulniu.com/2016/02/19/Android-3-network/</loc>
-    <lastmod>2020-11-27</lastmod>
-  </url>
-  <url>
     <loc>http://www.paulniu.com/2019/09/29/JavaEE-01-LearnRoute/</loc>
-    <lastmod>2020-11-27</lastmod>
-  </url>
-  <url>
-    <loc>http://www.paulniu.com/2016/01/09/Android-2-adaptation/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
@@ -174,10 +182,6 @@
   </url>
   <url>
     <loc>http://www.paulniu.com/2019/10/01/JavaEE-03-Servlet/</loc>
-    <lastmod>2020-11-27</lastmod>
-  </url>
-  <url>
-    <loc>http://www.paulniu.com/2015/12/07/Android-1-service/</loc>
     <lastmod>2020-11-27</lastmod>
   </url>
   <url>
