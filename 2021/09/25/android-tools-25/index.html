@@ -6,18 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.paulniu.com">
-  <title>牛谱乐的技术博客</title>
+  <title>android奇技淫巧 25 Kotlin和Lambda表达式 使用技巧 | 牛谱乐的技术博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="轻度完美主义者，懒癌晚期症候群，外向孤独患者">
-<meta property="og:type" content="website">
-<meta property="og:title" content="牛谱乐的技术博客">
-<meta property="og:url" content="http://www.paulniu.com/page/5/index.html">
+  <meta name="description" content="Kotlin，lambda表达式 在使用中的一些常见问题和解决方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="android奇技淫巧 25 Kotlin和Lambda表达式 使用技巧">
+<meta property="og:url" content="http://www.paulniu.com/2021/09/25/android-tools-25/index.html">
 <meta property="og:site_name" content="牛谱乐的技术博客">
-<meta property="og:description" content="轻度完美主义者，懒癌晚期症候群，外向孤独患者">
+<meta property="og:description" content="Kotlin，lambda表达式 在使用中的一些常见问题和解决方法">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://www.paulniu.com/assets/tools/tools-lambda-01.png">
+<meta property="og:image" content="http://www.paulniu.com/assets/tools/tools-lambda-02.png">
+<meta property="article:published_time" content="2021-09-25T13:38:10.000Z">
+<meta property="article:modified_time" content="2021-09-25T13:41:02.524Z">
 <meta property="article:author" content="Paul Niu">
-<meta property="article:tag" content="Android,安卓,程序猿,攻城狮,H5,IOS,Python,C,C++,Java,Kotlin">
+<meta property="article:tag" content="android">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.paulniu.com/assets/tools/tools-lambda-01.png">
   
     <link rel="alternative" href="/atom.xml" title="牛谱乐的技术博客" type="application/atom+xml">
   
@@ -149,1116 +154,85 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-android-32-okhttp" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-android-tools-25" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/08/android-32-okhttp/">重拾android路(三十二) OkHttp</a>
+    <h1 class="article-title" itemprop="name">
+      android奇技淫巧 25 Kotlin和Lambda表达式 使用技巧
     </h1>
   
 
         
-        <a href="/2019/08/08/android-32-okhttp/" class="archive-article-date">
-  	<time datetime="2019-08-08T11:36:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-08</time>
+        <a href="/2021/09/25/android-tools-25/" class="archive-article-date">
+  	<time datetime="2021-09-25T13:38:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-25</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>OKHttp网络请求</p>
-        
-          <a class="article-more-a" href="/2019/08/08/android-32-okhttp/#more">more >></a>
-        
-      
+        <p>Kotlin，lambda表达式 在使用中的一些常见问题和解决方法</p>
+<span id="more"></span>
+
+<h3 id="尽量少使用toLowerCase和toUpperCase方法"><a href="#尽量少使用toLowerCase和toUpperCase方法" class="headerlink" title="尽量少使用toLowerCase和toUpperCase方法"></a>尽量少使用toLowerCase和toUpperCase方法</h3><p>当我们比较两个字符串，需要忽略大小写的时候，通常会调用<strong>toLowerCase</strong>方法或者<strong>toUpperCase</strong>方法转换成大写或小写，然后再进行比较，但是这样的话有一个不好的地方，每次调用<strong>toLowerCase</strong>方法或者<strong>toUpperCase</strong>方法的时候，会创建一个新的字符串，然后再进行比较</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args:<span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span>&#123;</span><br><span class="line">  <span class="keyword">val</span> oldName = <span class="string">&quot;paulniu&quot;</span></span><br><span class="line">  <span class="keyword">val</span> newName = <span class="string">&quot;PaulNiu&quot;</span></span><br><span class="line">  <span class="keyword">val</span> result = oldName.toLowerCase() == newName.toLowerCase()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>toLowerCase</strong>方法编译之后的Java代码<br><img src="/assets/tools/tools-lambda-01.png" alt="编译之后的java代码"></p>
+<p>如上图所示首先会生成一个新的字符串，然后再进行字符串的比较</p>
+<p>如果我们想要忽略大小写比较字符串内容，可以通过下面的方式</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args:<span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span>&#123;</span><br><span class="line">  <span class="keyword">val</span> oldName = <span class="string">&quot;paulniu&quot;</span></span><br><span class="line">  <span class="keyword">val</span> newName = <span class="string">&quot;PaulNiu&quot;</span></span><br><span class="line">  <span class="keyword">val</span> result = oldName.equals(newName,ignoreCase = <span class="literal">true</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样equals编译之后的java代码如下所示<br><img src="/assets/tools/tools-lambda-02.png" alt="equals编译之后的java代码"></p>
+<h3 id="Kotlin处理空字符串"><a href="#Kotlin处理空字符串" class="headerlink" title="Kotlin处理空字符串"></a>Kotlin处理空字符串</h3><p>当字符串为空字符串的时候，返回一个默认值，比如下面的写法</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">val <span class="keyword">target</span> = <span class="string">&quot;&quot;</span></span><br><span class="line">val name = <span class="keyword">if</span> (<span class="keyword">target</span>.isEmpty()) <span class="string">&quot;npl&quot;</span> <span class="keyword">else</span> <span class="keyword">target</span></span><br></pre></td></tr></table></figure>
+<p>其实我们可以通过另外一种方法</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">val <span class="built_in">name</span> = target.ifEmpty&#123; <span class="string">&quot;npl&quot;</span> &#125;</span><br></pre></td></tr></table></figure>
+<p>这个地方的原理跟我们使用<strong>if</strong>表达式是一样的，源码内容如下</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;C, R&gt;</span> C.<span class="title">ifEmpty</span><span class="params">(defaultValue: () -&gt; <span class="type">R</span>)</span></span>: R <span class="keyword">where</span> C : CharSequence, C : R =</span><br><span class="line">    <span class="keyword">if</span> (isEmpty()) defaultValue() <span class="keyword">else</span> <span class="keyword">this</span></span><br></pre></td></tr></table></figure>
+<p><strong>ifEmpty</strong>方法是一个扩展方法，接受一个lambda表达式<strong>defaultValue</strong>，如果是空字符串，则返回<strong>defaultValue</strong>，否则不为空，返回调用者本身<br>处理<strong>ifEmpty</strong>方法之后，kotlin库中还封装了很多其他有用的方法，如将字符串转换为数字</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> input = <span class="string">&quot;123&quot;</span></span><br><span class="line"><span class="keyword">val</span> number = input.<span class="keyword">to</span><span class="constructor">IntOrNull()</span>?:<span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="避免将解构声明和数据类一起使用"><a href="#避免将解构声明和数据类一起使用" class="headerlink" title="避免将解构声明和数据类一起使用"></a>避免将解构声明和数据类一起使用</h3><p>这个是Kotlin团队的一个建议：避免将解构声明和数据类一起使用，如果以后王数据类添加新的属性，很容易破坏戴梦得解构，我们看一个例子</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数据类</span></span><br><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">People</span></span>(</span><br><span class="line">  <span class="keyword">val</span> name:String,</span><br><span class="line">  <span class="keyword">val</span> city:String</span><br><span class="line">)</span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args:<span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span>&#123;</span><br><span class="line">  printlnPeople(People(<span class="string">&quot;paulniu&quot;</span>,<span class="string">&quot;beiJing&quot;</span>))</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">printlnPeople</span><span class="params">(people:<span class="type">People</span>)</span></span>&#123;</span><br><span class="line">  <span class="comment">// 解构声明，获取name和city</span></span><br><span class="line">  <span class="keyword">val</span> (name,city) = people</span><br><span class="line">  println(<span class="string">&quot;name = <span class="subst">$&#123;name&#125;</span>&quot;</span>)</span><br><span class="line">  println(<span class="string">&quot;city = <span class="subst">$&#123;city&#125;</span>&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果类似于：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">name</span> = paulniu</span><br><span class="line"><span class="attr">city</span> = beiJing</span><br></pre></td></tr></table></figure>
+<p>这时我们想要给People类新增一个字段age，那么我们需要修改People数据类</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">data <span class="keyword">class</span> <span class="symbol">People</span>(</span><br><span class="line">  <span class="symbol">val</span> <span class="symbol">name:<span class="symbol">String</span>,</span></span><br><span class="line"><span class="symbol">  <span class="symbol">val</span></span> <span class="symbol">age:<span class="symbol">Int</span>,</span></span><br><span class="line"><span class="symbol">  <span class="symbol">val</span></span> <span class="symbol">city:<span class="symbol">String</span></span></span><br><span class="line">)</span><br><span class="line"><span class="symbol">fun</span> <span class="symbol">main</span>(<span class="symbol">args:<span class="symbol">Array</span></span>&lt;<span class="symbol">String</span>&gt;)&#123;</span><br><span class="line">  printlnPeople(People(<span class="string">&quot;paulniu&quot;</span>,<span class="number">18</span>,<span class="string">&quot;beiJing&quot;</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此时没有更改解构声明，也不会有任何错误，但是输出结果肯定不是我们想要的<br>数据结果可能类似于：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">name</span> = paulniu</span><br><span class="line"><span class="attr">city</span> = <span class="number">18</span></span><br></pre></td></tr></table></figure>
+<p>因此这时我们需要修改解构声明，但如果代码中有多次解构声明，而我们只是增加了一个新属性，就有可能需要改动所有使用解构声明的地方。所以这种情况是非常不合理的，我们一定要避免将解构声明和数据类一起使用，当我们使用不规范的时候编译器也会给出警告</p>
+<h3 id="文件的扩展方法"><a href="#文件的扩展方法" class="headerlink" title="文件的扩展方法"></a>文件的扩展方法</h3><p>Kotlin提供了很多文件扩展方法：<strong>forEachLine</strong>,<strong>readLines</strong>,<strong>readText</strong>,<strong>useLines</strong>等，帮助我们简化文件的操作，而且完成使用之后，他们会自动关闭，如下</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in"><span class="built_in">File</span></span>(<span class="string">&quot;dhl.txt&quot;</span>).useLines &#123; line -&gt;</span><br><span class="line">    <span class="built_in">println</span>(line)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>userLines</strong>是File的扩展方法，调用<strong>useLines</strong>会返回一个we你按中所有行的Sequence，当文件内容读取完毕之后，他会自动关闭</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> File.<span class="title">useLines</span><span class="params">(charset: <span class="type">Charset</span> = Charsets.UTF_8, block: (<span class="type">Sequence</span>&lt;<span class="type">String</span>&gt;) -&gt; <span class="type">T</span>)</span></span>: T =</span><br><span class="line">    bufferedReader(charset).use &#123; block(it.lineSequence()) &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>useLines 是File的一个扩展方法</li>
+<li>useLines 接受一个Lambda表达式的block</li>
+<li>调用了BufferedReader读取文件内容，之后调用block返回文件中所有行的Sequence给调用者</li>
+</ul>
+<p><strong>useLines</strong>方法内部调用了<strong>use</strong>方法，<strong>use</strong>方法也是一个扩展方法，源码如下</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T : Closeable?, R&gt;</span> T.<span class="title">use</span><span class="params">(block: (<span class="type">T</span>) -&gt; <span class="type">R</span>)</span></span>: R &#123;</span><br><span class="line">    <span class="keyword">var</span> exception: Throwable? = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> block(<span class="keyword">this</span>)</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e: Throwable) &#123;</span><br><span class="line">        exception = e</span><br><span class="line">        <span class="keyword">throw</span> e</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="keyword">when</span> &#123;</span><br><span class="line">            apiVersionIsAtLeast(<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>) -&gt; <span class="keyword">this</span>.closeFinally(exception)</span><br><span class="line">            <span class="keyword">this</span> == <span class="literal">null</span> -&gt; &#123;&#125;</span><br><span class="line">            exception == <span class="literal">null</span> -&gt; close()</span><br><span class="line">            <span class="keyword">else</span> -&gt;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    close()</span><br><span class="line">                &#125; <span class="keyword">catch</span> (closeException: Throwable) &#123;</span><br><span class="line">                    <span class="comment">// cause.addSuppressed(closeException) // ignored here</span></span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其实就是调用了<strong>try…catch…finally</strong>最后在finally内部进行close</p>
+<h3 id="joinToString方法的使用"><a href="#joinToString方法的使用" class="headerlink" title="joinToString方法的使用"></a>joinToString方法的使用</h3><p><strong>joinToString</strong>方法提供了一组丰富的可选项(分隔符，前缀，后缀，数量限制等)可用于将可迭代对象转换为字符串</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">val data = listOf(<span class="string">&quot;Java&quot;</span>, <span class="string">&quot;Kotlin&quot;</span>, <span class="string">&quot;C++&quot;</span>, <span class="string">&quot;Python&quot;</span>)</span><br><span class="line">        <span class="selector-class">.joinToString</span>(</span><br><span class="line">                separator = <span class="string">&quot; | &quot;</span>,</span><br><span class="line">                prefix = <span class="string">&quot;&#123;&quot;</span>,</span><br><span class="line">                postfix = <span class="string">&quot;&#125;&quot;</span></span><br><span class="line">        ) &#123;</span><br><span class="line">            it<span class="selector-class">.toUpperCase</span>()</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">println</span><span class="params">(data)</span></span> <span class="comment">// &#123;JAVA | KOTLIN | C++ | PYTHON&#125;</span></span><br></pre></td></tr></table></figure>
+<p>这是种很常见的方法，将集合转换成字符串，高效利用便捷的<strong>joinToString</strong>方法，开发的时候能够事半功倍。同时Kotlin库函数提供了一些删除的方法，如下所示</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">var</span> data = <span class="string">&quot;**hi dhl**&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 移除前缀</span></span><br><span class="line"><span class="function"><span class="title">println</span><span class="params">(data.removePrefix(<span class="string">&quot;**&quot;</span>)</span></span>) <span class="comment">//  hi dhl**</span></span><br><span class="line"><span class="comment">// 移除后缀</span></span><br><span class="line"><span class="function"><span class="title">println</span><span class="params">(data.removeSuffix(<span class="string">&quot;**&quot;</span>)</span></span>) <span class="comment">//  **hi dhl</span></span><br><span class="line"><span class="comment">// 移除前缀和后缀</span></span><br><span class="line"><span class="function"><span class="title">println</span><span class="params">(data.removeSurrounding(<span class="string">&quot;**&quot;</span>)</span></span>) <span class="comment">// hi dhl</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回第一次出现分隔符后的字符串</span></span><br><span class="line"><span class="function"><span class="title">println</span><span class="params">(data.substringAfter(<span class="string">&quot;**&quot;</span>)</span></span>) <span class="comment">// hi dhl**</span></span><br><span class="line"><span class="comment">// 如果没有找到，返回原始字符串</span></span><br><span class="line"><span class="function"><span class="title">println</span><span class="params">(data.substringAfter(<span class="string">&quot;--&quot;</span>)</span></span>) <span class="comment">// **hi dhl**</span></span><br><span class="line"><span class="comment">// 如果没有找到，返回默认字符串 &quot;no match&quot;</span></span><br><span class="line"><span class="function"><span class="title">println</span><span class="params">(data.substringAfter(<span class="string">&quot;--&quot;</span>,<span class="string">&quot;no match&quot;</span>)</span></span>) <span class="comment">// no match</span></span><br><span class="line"></span><br><span class="line">data = <span class="string">&quot;&#123;JAVA | KOTLIN | C++ | PYTHON&#125;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 移除前缀和后缀</span></span><br><span class="line"><span class="function"><span class="title">println</span><span class="params">(data.removeSurrounding(<span class="string">&quot;&#123;&quot;</span>, <span class="string">&quot;&#125;&quot;</span>)</span></span>) <span class="comment">// JAVA | KOTLIN | C++ | PYTHON</span></span><br></pre></td></tr></table></figure>
+<p>有了这些Kotlin库函数，我们不需要再做<strong>startsWith</strong>和<strong>endsWith</strong>的检查，如果让我们自己实现，可能需要花一些功夫实现，但是源码实现的就比较有特点，我们可以学习一下</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public String substring(<span class="built_in">int</span> beginIndex, <span class="built_in">int</span> endIndex) &#123;</span><br><span class="line">    <span class="keyword">if</span> (beginIndex &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        throw <span class="keyword">new</span> <span class="constructor">StringIndexOutOfBoundsException(<span class="params">beginIndex</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (endIndex &gt; value.length) &#123;</span><br><span class="line">        throw <span class="keyword">new</span> <span class="constructor">StringIndexOutOfBoundsException(<span class="params">endIndex</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">int</span> subLen = endIndex - beginIndex;</span><br><span class="line">    <span class="keyword">if</span> (subLen &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        throw <span class="keyword">new</span> <span class="constructor">StringIndexOutOfBoundsException(<span class="params">subLen</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    return ((beginIndex<span class="operator"> == </span><span class="number">0</span>)<span class="operator"> &amp;&amp; </span>(endIndex<span class="operator"> == </span>value.length)) ? this</span><br><span class="line">            : <span class="keyword">new</span> <span class="constructor">String(<span class="params">value</span>, <span class="params">beginIndex</span>, <span class="params">subLen</span>)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="plus操作符"><a href="#plus操作符" class="headerlink" title="plus操作符"></a>plus操作符</h3><p>我们在Java中的算术运算符只能应用于基本类型，+号运算符可以和String值一起使用，但是不能在集合中使用，在Kotlin中可以应用在任何类型。如下所示，利用plus和minus对map集合进行运算</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fun</span> main<span class="literal">()</span> &#123;</span><br><span class="line">    <span class="keyword">val</span> numbersMap = map<span class="constructor">Of(<span class="string">&quot;one&quot;</span> <span class="params">to</span> 1, <span class="string">&quot;two&quot;</span> <span class="params">to</span> 2, <span class="string">&quot;three&quot;</span> <span class="params">to</span> 3)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// plus (+)</span></span><br><span class="line">    println(numbersMap + <span class="constructor">Pair(<span class="string">&quot;four&quot;</span>, 4)</span>) <span class="comment">// &#123;one=1, two=2, three=3, four=4&#125;</span></span><br><span class="line">    println(numbersMap + <span class="constructor">Pair(<span class="string">&quot;one&quot;</span>, 10)</span>) <span class="comment">// &#123;one=10, two=2, three=3&#125;</span></span><br><span class="line">    println(numbersMap + <span class="constructor">Pair(<span class="string">&quot;five&quot;</span>, 5)</span> + <span class="constructor">Pair(<span class="string">&quot;one&quot;</span>, 11)</span>) <span class="comment">// &#123;one=11, two=2, three=3, five=5&#125;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// minus (-)</span></span><br><span class="line">    println(numbersMap - <span class="string">&quot;one&quot;</span>) <span class="comment">// &#123;two=2, three=3&#125;</span></span><br><span class="line">    println(numbersMap - <span class="built_in">list</span><span class="constructor">Of(<span class="string">&quot;two&quot;</span>, <span class="string">&quot;four&quot;</span>)</span>) <span class="comment">// &#123;one=1, three=3&#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其实这里用到了运算符的重载，Kotlin在Maps.kt文件中，定义了一系列用关键字<strong>operator</strong>声明的Map的扩展函数<br>用<strong>operator</strong>关键字声明plus函数，可以直接使用+号来做运算，使用<strong>operator</strong>修饰符声明minus函数，可以直接使用-号来做运算</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Salary</span></span>(<span class="keyword">var</span> base: <span class="built_in">Int</span> = <span class="number">100</span>)&#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">toString</span><span class="params">()</span></span>: String = base.toString()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> Salary.<span class="title">plus</span><span class="params">(other: <span class="type">Salary</span>)</span></span>: Salary = Salary(base + other.base)</span><br><span class="line"><span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> Salary.<span class="title">minus</span><span class="params">(other: <span class="type">Salary</span>)</span></span>: Salary = Salary(base - other.base)</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> s1 = Salary(<span class="number">10</span>)</span><br><span class="line"><span class="keyword">val</span> s2 = Salary(<span class="number">20</span>)</span><br><span class="line">println(s1 + s2) <span class="comment">// 30</span></span><br><span class="line">println(s1 - s2) <span class="comment">// -10</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Map集合的默认值"><a href="#Map集合的默认值" class="headerlink" title="Map集合的默认值"></a>Map集合的默认值</h3><p>在Map集合中，可以使用withDefault设置一个默认值，当键不在Map集合中，通过getValue返回默认值</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">val map = mapOf(</span><br><span class="line">        <span class="string">&quot;java&quot;</span> to <span class="number">1</span>,</span><br><span class="line">        <span class="string">&quot;kotlin&quot;</span> to <span class="number">2</span>,</span><br><span class="line">        <span class="string">&quot;python&quot;</span> to <span class="number">3</span></span><br><span class="line">)<span class="selector-class">.withDefault</span> &#123; <span class="string">&quot;?&quot;</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">println</span><span class="params">(map.getValue(<span class="string">&quot;java&quot;</span>)</span></span>) <span class="comment">// 1</span></span><br><span class="line"><span class="function"><span class="title">println</span><span class="params">(map.getValue(<span class="string">&quot;kotlin&quot;</span>)</span></span>) <span class="comment">// 2</span></span><br><span class="line"><span class="function"><span class="title">println</span><span class="params">(map.getValue(<span class="string">&quot;c++&quot;</span>)</span></span>) <span class="comment">// ?</span></span><br></pre></td></tr></table></figure>
+<p>这里我们使用<strong>withDefault</strong>操作符，设置当Map中key对应的值为null的时候，可以返回一个null，源码如下：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">internal</span> <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;K, V&gt;</span> Map<span class="type">&lt;K, V&gt;</span>.<span class="title">getOrElseNullable</span><span class="params">(key: <span class="type">K</span>, defaultValue: () -&gt; <span class="type">V</span>)</span></span>: V &#123;</span><br><span class="line">    <span class="keyword">val</span> value = <span class="keyword">get</span>(key)</span><br><span class="line">    <span class="keyword">if</span> (value == <span class="literal">null</span> &amp;&amp; !containsKey(key)) &#123;</span><br><span class="line">        <span class="keyword">return</span> defaultValue()</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="meta">@Suppress(<span class="meta-string">&quot;UNCHECKED_CAST&quot;</span>)</span></span><br><span class="line">        <span class="keyword">return</span> value <span class="keyword">as</span> V</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/1e48b2fbb843">MediaPlayer实现边下边播功能</a></p>
 
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">OkHttp</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/08/android-32-okhttp/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-python-11" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/07/python-11/">拥抱Python（十一） 循环语句</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/07/python-11/" class="archive-article-date">
-  	<time datetime="2019-08-07T13:51:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>循环语句</p>
-        
-          <a class="article-more-a" href="/2019/08/07/python-11/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/07/python-11/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-python-10" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/06/python-10/">拥抱Python（十） 条件判断</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/06/python-10/" class="archive-article-date">
-  	<time datetime="2019-08-06T13:51:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>条件判断</p>
-        
-          <a class="article-more-a" href="/2019/08/06/python-10/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/06/python-10/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-android-media-04" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/06/android-media-04/">android 音视频开发(四)</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/06/android-media-04/" class="archive-article-date">
-  	<time datetime="2019-08-06T12:00:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Camera2 API 采集视频并SurfaceView、TextureView 预览</p>
-        
-          <a class="article-more-a" href="/2019/08/06/android-media-04/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">音视频</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/06/android-media-04/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-python-09" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/05/python-09/">拥抱Python（九） 字典</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/05/python-09/" class="archive-article-date">
-  	<time datetime="2019-08-05T13:51:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>字典</p>
-        
-          <a class="article-more-a" href="/2019/08/05/python-09/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/05/python-09/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-android-media-03" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/04/android-media-03/">android 音视频开发(三)</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/04/android-media-03/" class="archive-article-date">
-  	<time datetime="2019-08-04T13:51:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>实现音频的采集和播放</p>
-        
-          <a class="article-more-a" href="/2019/08/04/android-media-03/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">音视频</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/04/android-media-03/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-python-08" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/04/python-08/">拥抱Python（八） 元组</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/04/python-08/" class="archive-article-date">
-  	<time datetime="2019-08-04T13:51:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Python的元组和列表类似，不过元组不能修改</p>
-        
-          <a class="article-more-a" href="/2019/08/04/python-08/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/04/python-08/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-python-07" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/03/python-07/">拥抱Python（七） 列表</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/03/python-07/" class="archive-article-date">
-  	<time datetime="2019-08-03T13:51:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>序列是Python中最基本的数据结构，序列中每个元素都分配一个数字–位置或者索引，从0开始计数</p>
-        
-          <a class="article-more-a" href="/2019/08/03/python-07/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/03/python-07/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-android-media-02" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/02/android-media-02/">android 音视频开发(二)</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/02/android-media-02/" class="archive-article-date">
-  	<time datetime="2019-08-02T13:51:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>绘制一张图片，使用至少三种不同的方式</p>
-        
-          <a class="article-more-a" href="/2019/08/02/android-media-02/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">音视频</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/02/android-media-02/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-android-media-01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/02/android-media-01/">android 音视频开发(一)</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/02/android-media-01/" class="archive-article-date">
-  	<time datetime="2019-08-02T11:31:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>随着5G时代的即将到来，以后的手机软件中视频和语音类的软件肯定会迎来一次崛起的机会，然而自己在这方面还没有真正的涉足过，所以在网上找了一些资料，打算好好的学习一下。不过自己真的没有将这些应用于实际开发中，所以应该会有很多不完善和不合理的地方，所以希望能够借着这个机会，查漏补缺，将自己的技术多打磨一下。</p>
-        
-          <a class="article-more-a" href="/2019/08/02/android-media-01/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">音视频</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/02/android-media-01/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-python-06" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/01/python-06/">拥抱Python（六） 字符串</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/01/python-06/" class="archive-article-date">
-  	<time datetime="2019-08-01T13:51:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>字符串是 Python 中最常用的数据类型。我们可以使用引号( ‘ 或 “ )来创建字符串。</p>
-        
-          <a class="article-more-a" href="/2019/08/01/python-06/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/01/python-06/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-python-05" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/31/python-05/">拥抱Python（五） 数字</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/31/python-05/" class="archive-article-date">
-  	<time datetime="2019-07-31T13:51:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Python 数字数据类型用于存储数值。</p>
-        
-          <a class="article-more-a" href="/2019/07/31/python-05/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/31/python-05/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-python-04" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/30/python-04/">拥抱Python（四） 基本运算符</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/30/python-04/" class="archive-article-date">
-  	<time datetime="2019-07-30T13:51:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Python支持的运算符主要从以下几个方面入手</p>
-        
-          <a class="article-more-a" href="/2019/07/30/python-04/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/30/python-04/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-python-03" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/30/python-03/">拥抱Python（三） 其他操作符</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/30/python-03/" class="archive-article-date">
-  	<time datetime="2019-07-30T13:50:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Python的标识</p>
-        
-          <a class="article-more-a" href="/2019/07/30/python-03/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/30/python-03/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-android-tools-11" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/27/android-tools-11/">android奇技淫巧 11 Activity启动</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/27/android-tools-11/" class="archive-article-date">
-  	<time datetime="2019-07-27T12:42:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Activity启动流程</p>
-        
-          <a class="article-more-a" href="/2019/07/27/android-tools-11/#more">more >></a>
-        
       
 
       
@@ -1280,16 +254,75 @@ var _hmt = _hmt || [];
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/27/android-tools-11/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://www.paulniu.com/2021/09/25/android-tools-25/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2021/09/10/algorithm-01/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">算法(一) 入门</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -1309,88 +342,14 @@ var _hmt = _hmt || [];
 
 
 
-
-  
-    <article id="post-python-02" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/25/python-02/">拥抱Python（二） 基本语法概述</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/25/python-02/" class="archive-article-date">
-  	<time datetime="2019-07-25T14:23:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Python变量</p>
-        
-          <a class="article-more-a" href="/2019/07/25/python-02/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/25/python-02/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/4/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/6/">Next &amp;raquo;</a>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -1413,8 +372,8 @@ var _hmt = _hmt || [];
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
