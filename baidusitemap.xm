@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://www.paulniu.com/2021/09/07/android-interview-2020/</loc>
+    <lastmod>2021-09-28</lastmod>
+  </url>
+  <url>
+    <loc>http://www.paulniu.com/2021/09/27/android-tools-26/</loc>
+    <lastmod>2021-09-27</lastmod>
+  </url>
+  <url>
     <loc>http://www.paulniu.com/2021/09/25/android-tools-25/</loc>
     <lastmod>2021-09-25</lastmod>
   </url>
@@ -34,10 +42,6 @@
   </url>
   <url>
     <loc>http://www.paulniu.com/2020/08/22/android-41-surface/</loc>
-    <lastmod>2021-09-07</lastmod>
-  </url>
-  <url>
-    <loc>http://www.paulniu.com/2021/09/07/android-interview-2020/</loc>
     <lastmod>2021-09-07</lastmod>
   </url>
   <url>

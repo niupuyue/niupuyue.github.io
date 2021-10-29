@@ -16,7 +16,7 @@
 <meta property="og:description" content="五年Android开发面试问什么？">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-09-07T01:16:29.000Z">
-<meta property="article:modified_time" content="2021-09-07T06:24:40.864Z">
+<meta property="article:modified_time" content="2021-09-28T12:50:27.787Z">
 <meta property="article:author" content="Paul Niu">
 <meta property="article:tag" content="android">
 <meta property="article:tag" content="面试">
@@ -178,77 +178,103 @@ var _hmt = _hmt || [];
 <p>之前一段时间，公司在招Android开发工程师，招人的标准都是我自己定的，相对而言没有那么内卷，问的都是一些基础性的题目。但是保不齐以后会遇到比较内卷的情况。自己记录一下。这份面试文档都是从网上找的，不是自己的总结。我目前所在的公司是一家线上教育公司，教育行业现在正处于风口浪尖，早做准备。</p>
 <p>都说金九银十，现在这段时间虽说是跳槽的绝佳时机，但是因为经济情况和行业情况的原因，行情并不是很好，而且工资已经到了一定程度了，一般的小公司也不愿意支付如此之多的薪水。所以大厂，卷！！！要从一个问题入手，把Android所有的知识点都能贯穿起来，这就是最佳状态。大厂问的一般都比较深入。</p>
 <ol>
-<li><p>HashMap的实现原理 hashCode</p>
-</li>
-<li><p>ViewModel在Activity旋转时如何保存数据 LiveData底层实现原理</p>
-</li>
-<li><p>协程，实现原理，多个协程如何保证数据安全</p>
-</li>
-<li><p>自定义View requestLayout和invalited方法区别</p>
-</li>
-<li><p>Java的数据结构和对象的生命周期</p>
-</li>
-<li><p>Java中的锁 同步锁，互斥锁</p>
-</li>
-<li><p>四种引用类型，使用场景距离</p>
-</li>
-<li><p>App启动流程，启动过程中任务栈是如何工作的</p>
-</li>
+<li>HashMap的实现原理 hashCode</li>
+<li>ViewModel在Activity旋转时如何保存数据 LiveData底层实现原理</li>
+<li>协程，实现原理，多个协程如何保证数据安全</li>
+<li>自定义View requestLayout和invalited方法区别</li>
+<li>Java的数据结构和对象的生命周期</li>
+<li>Java中的锁 同步锁，互斥锁</li>
+<li>四种引用类型，使用场景距离</li>
+<li>App启动流程，启动过程中任务栈是如何工作的</li>
+<li>Activity，Fragment的生命周期，销毁时声明周期执行的顺序</li>
+<li>Handler消息机制，Handler发送一个消息一定会执行吗？Handler运行在哪个线程中？</li>
+<li>kotlin定义变量的方式 lateinit如何确保使用时已经初始化了，let,run,apply区别</li>
+<li>TCP/UDP 网络协议 输入网址都干了些什么？ Http2.0和Http3.0</li>
+<li>设计模式，观察者模式，工厂模式</li>
+<li>单例，饿汉/懒汉/双重锁</li>
+<li>Glide四级缓存机制(在网上需要再找一些Glide可能会遇到的问题)</li>
+<li>Activity启动流程</li>
+<li>LeakCanary实现原理</li>
+<li>Jvm内存模型，GC机制</li>
+<li>Activity的相应时间为什么是5s？60ms</li>
+<li>性能优化，包体积优化，编译速度提升</li>
+<li>热修复原理</li>
+<li>MVP，MVC，MVVM 模式</li>
+<li>OKHttp 中涉及的涉及模式，工作原理，任务链</li>
+<li>Retrofit</li>
+<li>代理和委托的区别  双亲委托模式</li>
+<li>手写算法，（冒泡排序，快速排序，二分排序，遍历二叉树，手写红黑树）</li>
+<li>String StringBuffer StringBuilder的区别</li>
+<li>事件分发原理</li>
+<li>ListView和RecyclerView</li>
+<li>Webview 内存泄漏 原生和H5交互 混合开发</li>
+<li>高德地图(专为宝马准备，如何实现定位，如何监听位置变化，地图实现原理)，相机的启动流程 TaskAffinity,SurfaceView</li>
+<li>类加载器 两种类加载器的区别</li>
+<li>音视频 多看一些八股文</li>
+<li>字节 基本数据类型 String池 </li>
 </ol>
-<ol start="9">
-<li><p>Activity，Fragment的生命周期，销毁时声明周期执行的顺序</p>
-</li>
-<li><p>Handler消息机制，Handler发送一个消息一定会执行吗？Handler运行在哪个线程中？</p>
-</li>
-<li><p>kotlin定义变量的方式 lateinit如何确保使用时已经初始化了，let,run,apply区别</p>
-</li>
-<li><p>TCP/UDP 网络协议 输入网址都干了些什么？ Http2.0和Http3.0</p>
-</li>
-<li><p>设计模式，观察者模式，工厂模式</p>
-</li>
-<li><p>单例，饿汉/懒汉/双重锁</p>
-</li>
-<li><p>Glide四级缓存机制(在网上需要再找一些Glide可能会遇到的问题)</p>
-</li>
-<li><p>Activity启动流程</p>
-</li>
-<li><p>LeakCanary实现原理</p>
-</li>
-<li><p>Jvm内存模型，GC机制</p>
-</li>
-<li><p>Activity的相应时间为什么是5s？60ms</p>
-</li>
-<li><p>性能优化，包体积优化，编译速度提升</p>
-</li>
-<li><p>热修复原理</p>
-</li>
-<li><p>MVP，MVC，MVVM 模式</p>
-</li>
-<li><p>OKHttp 中涉及的涉及模式，工作原理，任务链</p>
-</li>
-<li><p>Retrofit</p>
-</li>
-<li><p>代理和委托的区别  双亲委托模式</p>
-</li>
-<li><p>手写算法，（冒泡排序，快速排序，二分排序，遍历二叉树，手写红黑树）</p>
-</li>
-<li><p>String StringBuffer StringBuilder的区别</p>
-</li>
-<li><p>事件分发原理</p>
-</li>
-<li><p>ListView和RecyclerView</p>
-</li>
-<li><p>Webview 内存泄漏 原生和H5交互 混合开发</p>
-</li>
-<li><p>高德地图(专为宝马准备，如何实现定位，如何监听位置变化，地图实现原理)，相机的启动流程 TaskAffinity,SurfaceView</p>
-</li>
-<li><p>类加载器 两种类加载器的区别</p>
-</li>
-<li><p>音视频 多看一些八股文</p>
-</li>
-<li><p>字节 基本数据类型 String池 </p>
-</li>
-</ol>
+<p>另外一份从github上找到的，很值得推荐和学习</p>
+<h2 id="Handler-相关知识，面试必问！"><a href="#Handler-相关知识，面试必问！" class="headerlink" title="Handler 相关知识，面试必问！"></a>Handler 相关知识，面试必问！</h2><p>常问的点:<br>Handler Looper Message 关系是什么？<br>Messagequeue 的数据结构是什么？为什么要用这个数据结构？<br>如何在子线程中创建 Handler?<br>Handler post 方法原理？<br>ThreadLocal 必备 </p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f10cff5b4c25">Android消息机制的原理及源码解析</a>  源码角度完整解析<br><a target="_blank" rel="noopener" href="https://juejin.im/post/5c74b64a6fb9a049be5e22fc">Handler 都没搞懂，拿什么去跳槽啊？</a><br><a target="_blank" rel="noopener" href="https://juejin.im/entry/57fb3c53128fe100546ea4f2">Android Handler 消息机制（解惑篇）</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/guolin_blog/article/details/9991569">Android 消息机制</a> <strong>郭神的文章</strong><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/singwhatiwanna/article/details/48350919">Android的消息机制之ThreadLocal的工作原理</a> <strong>任玉刚的文章</strong> </p>
+<h2 id="Activity-相关"><a href="#Activity-相关" class="headerlink" title="Activity 相关"></a>Activity 相关</h2><p>启动模式以及使用场景?<br>onNewIntent()和onConfigurationChanged()<br>onSaveInstanceState()和onRestoreInstanceState()<br>Activity 到底是如何启动的</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/black_bird_cn/article/details/79764794">启动模式以及使用场景</a> 详细的解释场景并且以及一些坑<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/27181e2e32d2">onSaveInstanceState以及onRestoreInstanceState使用</a> 简单通透<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/0127fb67516d">onConfigurationChanged使用以及问题解决</a> 全面得描述了各种情况<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhaokaiqiang1992/article/details/49428287">Activity 启动流程解析</a></p>
+<h2 id="Fragment"><a href="#Fragment" class="headerlink" title="Fragment"></a>Fragment</h2><p>Fragment 生命周期和 Activity 对比<br>Fragment 之间如何进行通信<br>Fragment的startActivityForResult<br>Fragment重叠问题</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/guolin_blog/article/details/8881711">Fragment 初探</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_24442769/article/details/77679147">Fragment 重叠， 如何通信</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/1b3f829810a1">Fragment生命周期</a></p>
+<h2 id="Service-相关"><a href="#Service-相关" class="headerlink" title="Service 相关"></a>Service 相关</h2><p>**进程保活<br>Service的运行线程（生命周期方法全部在主线程<br>Service启动方式以及如何停止<br>ServiceConnection里面的回调方法运行在哪个线程</p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d870f99b675c">startService 和 bingService区别</a> 完整讲解了它们之间得区别<br><a target="_blank" rel="noopener" href="https://juejin.im/entry/58acf391ac502e007e9a0a11">进程保活一般套路</a> 把进程保活手段都讲了一遍<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/63aafe3c12af">关于进程保活你需要知道的一切</a> 10万+ 关于进程保活得文章</p>
+<h2 id="Android布局优化之ViewStub、include、merge"><a href="#Android布局优化之ViewStub、include、merge" class="headerlink" title="Android布局优化之ViewStub、include、merge"></a>Android布局优化之ViewStub、include、merge</h2><p>什么情况下使用 ViewStub、include、merge？<br>他们的原理是什么？</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u012792686/article/details/72901531">ViewStub、include、merge概念解析</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/bboyfeiyu/article/details/45869393">Android布局优化之ViewStub、include、merge使用与源码分析</a></p>
+<h2 id="BroadcastReceiver-相关"><a href="#BroadcastReceiver-相关" class="headerlink" title="BroadcastReceiver 相关"></a>BroadcastReceiver 相关</h2><p>注册方式，优先级<br>广播类型，区别<br>广播的使用场景，原理</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/csdn_aiyang/article/details/68947014">Android广播动态静态注册</a> 通俗易懂<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/carson_ho/article/details/52973504">常见使用以及流程解析</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/02085150339c">广播源码解析</a></p>
+<h2 id="AsyncTask相关"><a href="#AsyncTask相关" class="headerlink" title="AsyncTask相关"></a>AsyncTask相关</h2><p>AsyncTask是串行还是并行执行？<br>AsyncTask随着安卓版本的变迁</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/guolin_blog/article/details/11711405">AsyncTask完全解析</a> <strong>郭神的文章 一篇足够 从使用到源码</strong><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/singwhatiwanna/article/details/17596225">串行还是并行</a> </p>
+<h2 id="Android-事件分发机制"><a href="#Android-事件分发机制" class="headerlink" title="Android  事件分发机制"></a>Android  事件分发机制</h2><p>onTouch和onTouchEvent区别，调用顺序<br>dispatchTouchEvent， onTouchEvent， onInterceptTouchEvent 方法顺序以及使用场景<br>滑动冲突，如何解决</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/guolin_blog/article/details/9097463">事件分发机制</a> 郭神出品<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/lmj623565791/article/details/39102591">事件分发解析</a> 鸿洋出品<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d3758eef1f72">dispatchTouchEvent， onTouchEvent， onInterceptTouchEvent方法的使用场景解析</a></p>
+<h2 id="Android-View-绘制流程"><a href="#Android-View-绘制流程" class="headerlink" title="Android View 绘制流程"></a>Android View 绘制流程</h2><p>简述 View 绘制流程<br>onMeasure， onlayout， ondraw方法中需要注意的点<br>如何进行自定义 View<br>view 重绘机制</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/guolin_blog/article/details/12921889">Android LayoutInflater原理分析，带你一步步深入了解View(一)</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/guolin_blog/article/details/16330267">Android视图状态及重绘流程分析，带你一步步深入了解View(二)</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/guolin_blog/article/details/17045157">Android视图状态及重绘流程分析，带你一步步深入了解View(三)</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/guolin_blog/article/details/17357967">Android自定义View的实现方法，带你一步步深入了解View(四)</a><br><strong>别问我为什么推荐这么多郭神的文章，因为我是看着郭神的文章长大的！</strong></p>
+<h2 id="Android-Window、Activity、DecorView以及ViewRoot"><a href="#Android-Window、Activity、DecorView以及ViewRoot" class="headerlink" title="Android Window、Activity、DecorView以及ViewRoot"></a>Android Window、Activity、DecorView以及ViewRoot</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/8766babc40e0">Window、Activity、DecorView以及ViewRoot之间的关系</a></p>
+<h2 id="Android-的核心-Binder-多进程-AIDL"><a href="#Android-的核心-Binder-多进程-AIDL" class="headerlink" title="Android 的核心 Binder 多进程 AIDL"></a>Android 的核心 Binder 多进程 AIDL</h2><p>常见的 IPC 机制以及使用场景<br>为什么安卓要用 binder 进行跨进程传输<br>多进程带来的问题</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lmj623565791/article/details/38461079">AIDL 使用浅析</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/35519585">binder 原理解析</a> 真的不错<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/luoshengyang/article/details/6618363/">binder 最底层解析</a>  很难理解，我看了几遍还是了解一个大概<br><a target="_blank" rel="noopener" href="http://wuxiaolong.me/2018/02/15/AndroidIPC/">多进程通信方式以及带来的问题</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/u011240877/article/details/72863432">多进程通信方式对比</a></p>
+<h2 id="Android-高级必备-：AMS-WMS-PMS"><a href="#Android-高级必备-：AMS-WMS-PMS" class="headerlink" title="Android 高级必备 ：AMS,WMS,PMS"></a>Android 高级必备 ：AMS,WMS,PMS</h2><p>这部分真的复杂！<br>AMS,WMS,PMS 创建过程</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/sunkeji/articles/7650482.html">AMS,WMS,PMS全解析</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/itachi85/article/details/76405596">AMS启动流程</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/itachi85/article/details/78186741">WindowManagerService启动过程解析</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/lilian0118/article/details/24455019">PMS 启动流程解析</a></p>
+<h2 id="Android-ANR"><a href="#Android-ANR" class="headerlink" title="Android ANR"></a>Android ANR</h2><p> 为什么会发生 ANR？<br> 如何定位 ANR？<br> 如何避免 ANR？</p>
+<p> <a target="_blank" rel="noopener" href="https://droidyue.com/blog/2015/07/18/anr-in-android/">什么是 ANR</a><br> <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/388166988cef">如何避免以及分析方法</a><br> <a target="_blank" rel="noopener" href="https://juejin.im/post/58e5bd6dda2f60005fea525c">Android 性能优化之 ANR 详解</a></p>
+<h2 id="Android-内存相关"><a href="#Android-内存相关" class="headerlink" title="Android 内存相关"></a>Android 内存相关</h2><p><strong>注意：内存泄漏和内存溢出是 2 个概念</strong></p>
+<p>什么情况下会内存泄漏？<br>如何防止内存泄漏？</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u013435893/article/details/50608190">内存泄漏和溢出的区别</a><br><a target="_blank" rel="noopener" href="http://hukai.me/android-performance-oom/">OOM 概念以及安卓内存管理机制</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/ac00e370f83d">内存泄漏的可能性</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c5ac51d804fa">防止内存泄漏的方法</a></p>
+<h2 id="Android-屏幕适配"><a href="#Android-屏幕适配" class="headerlink" title="Android 屏幕适配"></a>Android 屏幕适配</h2><p>屏幕适配相关名词解析<br>现在流行的屏幕适配方式</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhaokaiqiang1992/article/details/45419023">屏幕适配名词以及概念解析</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/37199709">今日头条技术适配方案</a></p>
+<h2 id="Android-缓存机制"><a href="#Android-缓存机制" class="headerlink" title="Android 缓存机制"></a>Android 缓存机制</h2><p>LruCache使用极其原理</p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/2608f036f362">Android缓存机制</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/b49a111147ee">LruCache使用极其原理述</a></p>
+<h2 id="Android-性能优化"><a href="#Android-性能优化" class="headerlink" title="Android 性能优化"></a>Android 性能优化</h2><p>如何进行 内存 cpu 耗电 的定位以及优化<br>性能优化经常使用的方法<br>如何避免 UI 卡顿</p>
+<p>我正在看极客时间的Android开发高手课，里面的性能优化文章不错</p>
+<p><a target="_blank" rel="noopener" href="https://juejin.im/post/5a0d30e151882546d71ee49e">性能优化全解析，工具使用</a><br><a target="_blank" rel="noopener" href="https://juejin.im/post/5b50b017f265da0f7b2f649c">性能优化最佳实践</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/30691789">知乎高赞文章</a></p>
+<h2 id="Android-MVC、MVP、MVVM"><a href="#Android-MVC、MVP、MVVM" class="headerlink" title="Android MVC、MVP、MVVM"></a>Android MVC、MVP、MVVM</h2><p>好几种我该选择哪个？优劣点</p>
+<p>任玉刚的文章：<br><a target="_blank" rel="noopener" href="https://juejin.im/post/5b3a3a44f265da630e27a7e6">设计模式选择</a></p>
+<h2 id="Android-Gradle-知识"><a href="#Android-Gradle-知识" class="headerlink" title="Android Gradle 知识"></a>Android Gradle 知识</h2><p>这俩篇官方文章基础的够用了<br><a target="_blank" rel="noopener" href="https://developer.android.com/studio/build?hl=zh-cn">必须贴一下官方文档：配置构建</a><br><a target="_blank" rel="noopener" href="https://developer.android.com/studio/build/gradle-tips?hl=zh-cn">Gradle 提示与诀窍</a></p>
+<p>Gradle插件 了解就好<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/eclipsexys/article/details/50973205">Gradle 自定义插件方式</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/singwhatiwanna/article/details/78797506">全面理解Gradle - 执行时序</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.im/post/5af4f117f265da0b9f405221#heading-2">Gradle系列一</a><br><a target="_blank" rel="noopener" href="https://juejin.im/post/5afa06466fb9a07aaa1163f1">Gradle系列二</a><br><a target="_blank" rel="noopener" href="https://juejin.im/post/5b02113a5188254289190671">Gradle系列三</a></p>
+<h2 id="RxJava"><a href="#RxJava" class="headerlink" title="RxJava"></a>RxJava</h2><p>使用过程，特点，原理解析<br><a target="_blank" rel="noopener" href="https://blog.piasy.com/2016/09/15/Understand-RxJava/index.html">RxJava 名词以及如何使用</a><br><a target="_blank" rel="noopener" href="https://juejin.im/post/58dcc66444d904006dfd857a">Rxjava 观察者模式原理解析</a><br><a target="_blank" rel="noopener" href="https://juejin.im/post/5a209c876fb9a0452577e830">Rxjava订阅流程，线程切换，源码分析 系列</a></p>
+<h2 id="OKHTTP-和-Retrofit"><a href="#OKHTTP-和-Retrofit" class="headerlink" title="OKHTTP 和 Retrofit"></a>OKHTTP 和 Retrofit</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lmj623565791/article/details/47911083">OKHTTP完整解析</a>  –鸿洋出品<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/carson_ho/article/details/73732076">Retrofit使用流程，机制详解</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/45cb536be2f4">从 HTTP 到 Retrofit</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/cb3a7413b448">Retrofit是如何工作的</a></p>
+<h2 id="最流行图片加载库：-Glide"><a href="#最流行图片加载库：-Glide" class="headerlink" title="最流行图片加载库： Glide"></a>最流行图片加载库： Glide</h2><p><strong>郭神系列 Glide 分析</strong><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/guolin_blog/article/details/53759439">Android图片加载框架最全解析（一），Glide的基本用法</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/guolin_blog/article/details/53939176">Android图片加载框架最全解析（二），从源码的角度理解Glide的执行流程</a><br><a target="_blank" rel="noopener" href="http://blog.csdn.net/guolin_blog/article/details/54895665">Android图片加载框架最全解析（三），深入探究Glide的缓存机制</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/guolin_blog/article/details/70215985">Android图片加载框架最全解析（四），玩转Glide的回调与监听</a><br><a target="_blank" rel="noopener" href="http://blog.csdn.net/guolin_blog/article/details/71524668">Android图片加载框架最全解析（五），Glide强大的图片变换功能</a><br><a target="_blank" rel="noopener" href="http://blog.csdn.net/guolin_blog/article/details/78179422">Android图片加载框架最全解析（六），探究Glide的自定义模块功能</a><br><a target="_blank" rel="noopener" href="http://blog.csdn.net/guolin_blog/article/details/78357251">Android图片加载框架最全解析（七），实现带进度的Glide图片加载功能</a><br><a target="_blank" rel="noopener" href="http://blog.csdn.net/guolin_blog/article/details/78582548">Android图片加载框架最全解析（八），带你全面了解Glide 4的用法</a></p>
+<h2 id="Android-组件化与插件化"><a href="#Android-组件化与插件化" class="headerlink" title="Android 组件化与插件化"></a>Android 组件化与插件化</h2><p>业务大了代码多了会用到</p>
+<p>为什么要用组件化？<br>组件之间如何通信？<br>组件之间如何跳转？&lt;</p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/704cac3eb13d">Android 插件化和热修复知识梳理</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/guiying712/article/details/55213884">为什么要用组件化</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/1b1d77f58e84">1、Android彻底组件化方案实践</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/59822a7b2fad">2、Android彻底组件化demo发布</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c7459b59dcd5">3、Android彻底组件化-代码和资源隔离</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/03c498e05a46">4、Android彻底组件化—UI跳转升级改造</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/aa17cf4b2dca">5、Android彻底组件化—如何使用Arouter</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.im/entry/59decdf36fb9a0451c39621b">插件化框架历史</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/33017826">深入理解Android插件化技术</a> 阿里插件化技术<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/704cac3eb13d">Android 插件化和热修复知识梳理
+</a></p>
+<h2 id="Flutter-与-RN"><a href="#Flutter-与-RN" class="headerlink" title="Flutter 与 RN"></a>Flutter 与 RN</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/36861174">Flutter原理</a><br><a target="_blank" rel="noopener" href="https://juejin.im/post/5b0607c76fb9a07a9b365556">Flutter KO React Native? 让时间去决定吧…</a><br><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/27852694">如何评价 React Native？</a></p>
+<h2 id="面试常问的点"><a href="#面试常问的点" class="headerlink" title="面试常问的点"></a>面试常问的点</h2><p>除了上面整理的安卓高级技术问题，还有一些面试官喜欢问的点，大家针对准备回答：</p>
+<ul>
+<li>你在项目中遇到最难得点是什么？如何解决的？</li>
+<li>平时遇到问题了是如何解决的？比较好的回答： 官方文档一定要看，通过源码解决问题，然后才是搜索引擎以及和同事讨论</li>
+<li>你最近做的 APP 是如何架构的？为什么要这样架构？</li>
+<li>平时怎么进行技术进阶，如何学习？</li>
+<li>你觉得自己处于什么技术水平？</li>
+<li>你的技术优势是什么？</li>
+<li>用过什么开源技术？它的原理是什么？看过它的源码么？ 这里建议看上面 Glide 相关</li>
+<li>如何设计一个框架？能不能回答上直接判断你的技术等级</li>
+</ul>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p> <a target="_blank" rel="noopener" href="https://github.com/jinguangyue/Android-Advanced-Interview/blob/master/README.md">Android高级面试</a></p>
 
       
 
